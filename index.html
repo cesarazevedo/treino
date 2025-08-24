@@ -348,6 +348,19 @@
                 width: 60px;
                 padding: 6px 8px;
             }
+            
+            .history-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .congratulations-content {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+            
+            .congratulations-content h2 {
+                font-size: 1.5rem;
+            }
         }
 
         .circuit-info {
@@ -556,6 +569,240 @@
             background: #ff3838;
             transform: translateY(-1px);
         }
+
+        /* Streak Stats */
+        .streak-stats {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+            justify-content: center;
+        }
+
+        .streak-card {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            max-width: 200px;
+        }
+
+        .current-streak {
+            background: linear-gradient(135deg, #ff6b6b, #ffa500);
+            color: white;
+        }
+
+        .best-streak {
+            background: linear-gradient(135deg, #f39c12, #f1c40f);
+            color: white;
+        }
+
+        .streak-icon {
+            font-size: 2rem;
+        }
+
+        .streak-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .streak-label {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        /* Calendar Styles */
+        .calendar-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .calendar-header h3 {
+            margin: 0;
+            color: #333;
+            font-size: 1.3rem;
+        }
+
+        .calendar-nav-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .calendar-nav-btn:hover {
+            background: #5a67d8;
+            transform: scale(1.1);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .calendar-day-header {
+            text-align: center;
+            font-weight: bold;
+            padding: 8px;
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        .calendar-day:hover {
+            background: #f8f9ff;
+            transform: scale(1.05);
+        }
+
+        .calendar-day.today {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-weight: bold;
+        }
+
+        .calendar-day.other-month {
+            color: #ccc;
+            background: #f8f9fa;
+        }
+
+        .calendar-day.has-workout {
+            font-weight: bold;
+        }
+
+        .calendar-day.has-workout::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .calendar-day.workout-treino-a::after { background: #FF6B6B; }
+        .calendar-day.workout-treino-b::after { background: #4ECDC4; }
+        .calendar-day.workout-treino-c::after { background: #45B7D1; }
+        .calendar-day.workout-treino-d::after { background: #F9CA24; }
+        .calendar-day.workout-treino-e::after { background: #6C5CE7; }
+        .calendar-day.workout-treino-f::after { background: #FD79A8; }
+
+        .calendar-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .treino-a-dot { background: #FF6B6B; }
+        .treino-b-dot { background: #4ECDC4; }
+        .treino-c-dot { background: #45B7D1; }
+        .treino-d-dot { background: #F9CA24; }
+        .treino-e-dot { background: #6C5CE7; }
+        .treino-f-dot { background: #FD79A8; }
+
+        /* Sound Toggle Button */
+        .sound-toggle-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin-left: 10px;
+        }
+
+        .sound-toggle-btn.muted {
+            background: #ff4757;
+        }
+
+        .sound-toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Weight Input Styles */
+        .weight-input-container {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .weight-input {
+            width: 60px;
+            padding: 5px 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .weight-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .weight-history {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .weight-progress {
+            font-size: 0.8rem;
+            color: #4CAF50;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -618,6 +865,25 @@
                     <input type="number" id="rest-time-input" min="15" max="300" value="90" onchange="setCustomRestTime()">
                     <span>segundos</span>
                 </div>
+            </div>
+        </div>
+
+        <div class="calendar-container" id="calendar-container">
+            <div class="calendar-header">
+                <button class="calendar-nav-btn" onclick="changeCalendarMonth(-1)">‹</button>
+                <h3 id="calendar-month-year">Janeiro 2025</h3>
+                <button class="calendar-nav-btn" onclick="changeCalendarMonth(1)">›</button>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+                <!-- Calendário será gerado aqui -->
+            </div>
+            <div class="calendar-legend">
+                <div class="legend-item"><span class="legend-dot treino-a-dot"></span> Treino A</div>
+                <div class="legend-item"><span class="legend-dot treino-b-dot"></span> Treino B</div>
+                <div class="legend-item"><span class="legend-dot treino-c-dot"></span> Treino C</div>
+                <div class="legend-item"><span class="legend-dot treino-d-dot"></span> Treino D</div>
+                <div class="legend-item"><span class="legend-dot treino-e-dot"></span> Treino E</div>
+                <div class="legend-item"><span class="legend-dot treino-f-dot"></span> Treino F</div>
             </div>
         </div>
 
@@ -735,6 +1001,7 @@
         let timerSeconds = 0;
         let isTimerRunning = false;
         let defaultRestTime = 90; // tempo padrão em segundos
+        let timerSoundEnabled = true; // som do timer habilitado
         
         // Estatísticas de treinos
         let workoutStats = {
@@ -747,8 +1014,17 @@
                 'treino-e': 0,
                 'treino-f': 0
             },
-            lastCompletedWorkouts: [] // histórico dos últimos treinos
+            lastCompletedWorkouts: [], // histórico dos últimos treinos
+            currentStreak: 0,
+            bestStreak: 0,
+            lastWorkoutDate: null // para calcular streak
         };
+        
+        // Sistema de pesos
+        let exerciseWeights = {}; // histórico de pesos por exercício
+        
+        // Calendário
+        let calendarCurrentDate = new Date();
         
         let currentWorkoutCompleted = false;
 
@@ -772,6 +1048,11 @@
 
         // Selecionar dia
         function selectDay(day) {
+            // Resetar status de completude ao trocar de dia
+            if (day !== currentDay) {
+                currentWorkoutCompleted = false;
+            }
+            
             currentDay = day;
             
             // Atualizar botões
@@ -1307,6 +1588,7 @@
                 const today = new Date().toDateString();
                 localStorage.setItem('workoutProgress', JSON.stringify(completedExercises));
                 localStorage.setItem('lastWorkoutDate', today);
+                localStorage.setItem('currentWorkoutCompleted', currentWorkoutCompleted.toString());
             } catch (error) {
                 console.error('Erro ao salvar progresso:', error);
             }
@@ -1317,23 +1599,36 @@
             try {
                 const saved = localStorage.getItem('workoutProgress');
                 const lastDate = localStorage.getItem('lastWorkoutDate');
+                const savedCompleted = localStorage.getItem('currentWorkoutCompleted');
                 const today = new Date().toDateString();
                 
                 // Reset do progresso se é um novo dia
                 if (lastDate !== today) {
                     completedExercises = {};
+                    currentWorkoutCompleted = false;
                     localStorage.removeItem('workoutProgress');
+                    localStorage.removeItem('currentWorkoutCompleted');
                 } else if (saved) {
                     completedExercises = JSON.parse(saved);
+                    currentWorkoutCompleted = savedCompleted === 'true';
                 }
             } catch (error) {
                 console.error('Erro ao carregar progresso:', error);
                 completedExercises = {};
+                currentWorkoutCompleted = false;
             }
         }
 
         // Inicializar quando a página carregar
         document.addEventListener('DOMContentLoaded', init);
+        
+        // Fechar modal ao clicar fora dele
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('congratulations-modal');
+            if (modal && event.target === modal) {
+                closeCongratulationsModal();
+            }
+        });
     </script>
 </body>
 </html>
