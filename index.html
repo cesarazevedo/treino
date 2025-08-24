@@ -334,6 +334,20 @@
                 padding: 8px 12px;
                 font-size: 0.8rem;
             }
+            
+            .rest-time-controls {
+                gap: 5px;
+            }
+            
+            .rest-preset-btn {
+                padding: 6px 10px;
+                font-size: 0.75rem;
+            }
+            
+            #rest-time-input {
+                width: 60px;
+                padding: 6px 8px;
+            }
         }
 
         .circuit-info {
@@ -352,6 +366,64 @@
             margin-bottom: 15px;
             font-size: 0.9rem;
             color: #666;
+        }
+
+        .rest-time-config {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .rest-time-config label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .rest-time-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .rest-preset-btn {
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 20px;
+            background: white;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .rest-preset-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .rest-preset-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+            transform: scale(1.05);
+        }
+
+        #rest-time-input {
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            width: 70px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        #rest-time-input:focus {
+            outline: none;
+            border-color: #667eea;
         }
     </style>
 </head>
@@ -391,6 +463,19 @@
             
             <div class="progress-bar">
                 <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+            </div>
+            
+            <div class="rest-time-config">
+                <label for="rest-time-input">⏱️ Tempo de Descanso:</label>
+                <div class="rest-time-controls">
+                    <button class="rest-preset-btn" onclick="setRestTime(30)">30s</button>
+                    <button class="rest-preset-btn" onclick="setRestTime(45)">45s</button>
+                    <button class="rest-preset-btn" onclick="setRestTime(60)">1min</button>
+                    <button class="rest-preset-btn active" onclick="setRestTime(90)">1.5min</button>
+                    <button class="rest-preset-btn" onclick="setRestTime(120)">2min</button>
+                    <input type="number" id="rest-time-input" min="15" max="300" value="90" onchange="setCustomRestTime()">
+                    <span>segundos</span>
+                </div>
             </div>
         </div>
 
@@ -496,6 +581,7 @@
         let timerInterval = null;
         let timerSeconds = 0;
         let isTimerRunning = false;
+        let defaultRestTime = 90; // tempo padrão em segundos
 
         // Inicializar a página
         function init() {
@@ -504,10 +590,12 @@
             currentDay = days[today];
             
             loadProgress();
+            loadRestTimePreference();
             
             // Aguardar um pouco para garantir que todos os elementos estejam carregados
             setTimeout(() => {
                 selectDay(currentDay);
+                updateRestTimeDisplay();
             }, 100);
         }
 
@@ -624,7 +712,7 @@
                 html += `
                         </div>
                         <button class="start-timer-btn" onclick="startRestTimer()">
-                            ⏱️ Timer Descanso (90s)
+                            ⏱️ Timer Descanso (${formatTime(defaultRestTime)})
                         </button>
                     </div>
                 `;
@@ -658,7 +746,7 @@
         }
 
         // Iniciar timer de descanso
-        function startRestTimer(seconds = 90) {
+        function startRestTimer(seconds = defaultRestTime) {
             timerSeconds = seconds;
             isTimerRunning = true;
             document.getElementById('timer-container').style.display = 'block';
@@ -707,6 +795,110 @@
             clearInterval(timerInterval);
             isTimerRunning = false;
             document.getElementById('timer-container').style.display = 'none';
+        }
+
+        // Definir tempo de descanso pré-definido
+        function setRestTime(seconds) {
+            defaultRestTime = seconds;
+            
+            // Atualizar botões ativos
+            document.querySelectorAll('.rest-preset-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Ativar botão correspondente
+            const buttons = document.querySelectorAll('.rest-preset-btn');
+            const values = [30, 45, 60, 90, 120];
+            const index = values.indexOf(seconds);
+            if (index !== -1 && buttons[index]) {
+                buttons[index].classList.add('active');
+            }
+            
+            // Atualizar input
+            document.getElementById('rest-time-input').value = seconds;
+            
+            // Salvar preferência e atualizar interface
+            saveRestTimePreference();
+            updateRestTimeDisplay();
+        }
+
+        // Definir tempo de descanso personalizado via input
+        function setCustomRestTime() {
+            const input = document.getElementById('rest-time-input');
+            const seconds = parseInt(input.value);
+            
+            if (seconds >= 15 && seconds <= 300) {
+                defaultRestTime = seconds;
+                
+                // Remover destaque dos botões pré-definidos se não corresponder
+                const presetValues = [30, 45, 60, 90, 120];
+                if (!presetValues.includes(seconds)) {
+                    document.querySelectorAll('.rest-preset-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                }
+                
+                saveRestTimePreference();
+                updateRestTimeDisplay();
+            } else {
+                // Valor inválido, restaurar o valor anterior
+                input.value = defaultRestTime;
+                alert('Por favor, insira um valor entre 15 e 300 segundos.');
+            }
+        }
+
+        // Atualizar display do tempo de descanso em todos os botões
+        function updateRestTimeDisplay() {
+            const buttons = document.querySelectorAll('.start-timer-btn');
+            buttons.forEach(btn => {
+                btn.innerHTML = `⏱️ Timer Descanso (${formatTime(defaultRestTime)})`;
+            });
+        }
+
+        // Formatar tempo para exibição
+        function formatTime(seconds) {
+            if (seconds < 60) {
+                return `${seconds}s`;
+            } else {
+                const minutes = Math.floor(seconds / 60);
+                const remainingSeconds = seconds % 60;
+                if (remainingSeconds === 0) {
+                    return `${minutes}min`;
+                } else {
+                    return `${minutes}min ${remainingSeconds}s`;
+                }
+            }
+        }
+
+        // Salvar preferência de tempo de descanso
+        function saveRestTimePreference() {
+            try {
+                localStorage.setItem('defaultRestTime', defaultRestTime.toString());
+            } catch (error) {
+                console.error('Erro ao salvar preferência de tempo:', error);
+            }
+        }
+
+        // Carregar preferência de tempo de descanso
+        function loadRestTimePreference() {
+            try {
+                const saved = localStorage.getItem('defaultRestTime');
+                if (saved) {
+                    defaultRestTime = parseInt(saved);
+                    
+                    // Atualizar interface
+                    document.getElementById('rest-time-input').value = defaultRestTime;
+                    
+                    // Atualizar botão ativo se corresponder a um preset
+                    const presetValues = [30, 45, 60, 90, 120];
+                    const index = presetValues.indexOf(defaultRestTime);
+                    if (index !== -1) {
+                        setRestTime(defaultRestTime);
+                    }
+                }
+            } catch (error) {
+                console.error('Erro ao carregar preferência de tempo:', error);
+            }
         }
 
         // Atualizar estatísticas
