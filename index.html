@@ -425,6 +425,137 @@
             outline: none;
             border-color: #667eea;
         }
+
+        .workout-history {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .workout-history h3 {
+            margin-bottom: 15px;
+            color: #333;
+            text-align: center;
+        }
+
+        .history-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+        }
+
+        .history-card {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid;
+        }
+
+        .history-card .workout-type {
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .history-card .workout-count {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .history-treino-a { border-left-color: #FF6B6B; }
+        .history-treino-b { border-left-color: #4ECDC4; }
+        .history-treino-c { border-left-color: #45B7D1; }
+        .history-treino-d { border-left-color: #F9CA24; }
+        .history-treino-e { border-left-color: #6C5CE7; }
+        .history-treino-f { border-left-color: #FD79A8; }
+
+        .congratulations-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            display: none;
+        }
+
+        .congratulations-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+            margin: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            animation: celebrationPop 0.6s ease-out;
+        }
+
+        @keyframes celebrationPop {
+            0% { transform: scale(0.5) rotate(-10deg); opacity: 0; }
+            50% { transform: scale(1.1) rotate(5deg); opacity: 1; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        .congratulations-content h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .congratulations-content p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .close-modal-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .stats-reset {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .reset-btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .reset-btn:hover {
+            background: #ff3838;
+            transform: translateY(-1px);
+        }
     </style>
 </head>
 <body>
@@ -459,6 +590,17 @@
                     <div class="stat-value" id="workout-progress">0%</div>
                     <div class="stat-label">Progresso do Treino</div>
                 </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="total-workouts">0</div>
+                    <div class="stat-label">Treinos Concluídos</div>
+                </div>
+            </div>
+            
+            <div class="workout-history" id="workout-history">
+                <h3>📊 Histórico de Treinos</h3>
+                <div class="history-stats" id="history-stats">
+                    <!-- Estatísticas por tipo de treino -->
+                </div>
             </div>
             
             <div class="progress-bar">
@@ -488,6 +630,17 @@
             <div class="timer-controls">
                 <button class="timer-btn" onclick="pauseTimer()" style="background: #ffa500; color: white;">Pausar</button>
                 <button class="timer-btn" onclick="stopTimer()" style="background: #ff4757; color: white;">Parar</button>
+            </div>
+        </div>
+        
+        <div class="congratulations-modal" id="congratulations-modal">
+            <div class="congratulations-content">
+                <h2>🎉 Parabéns!</h2>
+                <p id="congratulations-text">Você completou seu treino!</p>
+                <div class="stats-summary" id="stats-summary">
+                    <!-- Resumo das estatísticas será inserido aqui -->
+                </div>
+                <button class="close-modal-btn" onclick="closeCongratulationsModal()">Continue Treinando! 💪</button>
             </div>
         </div>
     </div>
@@ -582,6 +735,22 @@
         let timerSeconds = 0;
         let isTimerRunning = false;
         let defaultRestTime = 90; // tempo padrão em segundos
+        
+        // Estatísticas de treinos
+        let workoutStats = {
+            totalWorkouts: 0,
+            workoutsByType: {
+                'treino-a': 0,
+                'treino-b': 0,
+                'treino-c': 0,
+                'treino-d': 0,
+                'treino-e': 0,
+                'treino-f': 0
+            },
+            lastCompletedWorkouts: [] // histórico dos últimos treinos
+        };
+        
+        let currentWorkoutCompleted = false;
 
         // Inicializar a página
         function init() {
@@ -591,11 +760,13 @@
             
             loadProgress();
             loadRestTimePreference();
+            loadWorkoutStats();
             
             // Aguardar um pouco para garantir que todos os elementos estejam carregados
             setTimeout(() => {
                 selectDay(currentDay);
                 updateRestTimeDisplay();
+                updateHistoryDisplay();
             }, 100);
         }
 
@@ -901,6 +1072,182 @@
             }
         }
 
+        // Completar treino
+        function completeWorkout(workout) {
+            currentWorkoutCompleted = true;
+            
+            // Incrementar estatísticas
+            workoutStats.totalWorkouts++;
+            workoutStats.workoutsByType[workout.class]++;
+            
+            // Adicionar ao histórico
+            const today = new Date();
+            workoutStats.lastCompletedWorkouts.unshift({
+                date: today.toISOString(),
+                type: workout.class,
+                name: workout.name,
+                day: currentDay
+            });
+            
+            // Manter apenas os últimos 50 treinos no histórico
+            if (workoutStats.lastCompletedWorkouts.length > 50) {
+                workoutStats.lastCompletedWorkouts = workoutStats.lastCompletedWorkouts.slice(0, 50);
+            }
+            
+            // Salvar estatísticas
+            saveWorkoutStats();
+            
+            // Atualizar display
+            updateHistoryDisplay();
+            updateStats();
+            
+            // Mostrar modal de parabéns
+            showCongratulationsModal(workout);
+        }
+
+        // Mostrar modal de parabéns
+        function showCongratulationsModal(workout) {
+            const modal = document.getElementById('congratulations-modal');
+            const text = document.getElementById('congratulations-text');
+            const summary = document.getElementById('stats-summary');
+            
+            if (!modal || !text || !summary) return;
+            
+            // Personalizar mensagem baseada no tipo de treino
+            const messages = {
+                'treino-a': 'Excelente trabalho no Peito e Tríceps! 💪',
+                'treino-b': 'Suas costas e bíceps agradecem! 🦾',
+                'treino-c': 'Pernas e glúteos fortalecidos! 🦵',
+                'treino-d': 'Ombros e abdômen definidos! 💥',
+                'treino-e': 'Full Body Força dominado! 🔥',
+                'treino-f': 'Circuito Metabólico conquistado! ⚡'
+            };
+            
+            text.textContent = messages[workout.class] || 'Você completou seu treino!';
+            
+            // Mostrar resumo das estatísticas
+            summary.innerHTML = `
+                <p style="margin: 10px 0; font-size: 1.1rem;">
+                    <strong>Total de treinos: ${workoutStats.totalWorkouts}</strong>
+                </p>
+                <p style="margin: 5px 0; color: #666;">
+                    Tipo ${workout.class.toUpperCase()}: ${workoutStats.workoutsByType[workout.class]} treinos
+                </p>
+            `;
+            
+            modal.style.display = 'flex';
+            
+            // Efeito sonoro simulado com vibração (se suportado)
+            if (navigator.vibrate) {
+                navigator.vibrate([100, 50, 100, 50, 200]);
+            }
+        }
+
+        // Fechar modal de parabéns
+        function closeCongratulationsModal() {
+            const modal = document.getElementById('congratulations-modal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Atualizar display do histórico
+        function updateHistoryDisplay() {
+            const historyContainer = document.getElementById('history-stats');
+            if (!historyContainer) return;
+            
+            const workoutNames = {
+                'treino-a': 'A - Peito/Tríceps',
+                'treino-b': 'B - Costas/Bíceps',
+                'treino-c': 'C - Pernas/Glúteos',
+                'treino-d': 'D - Ombros/Abdômen',
+                'treino-e': 'E - Full Body',
+                'treino-f': 'F - Metabólico'
+            };
+            
+            let html = '';
+            
+            Object.keys(workoutStats.workoutsByType).forEach(type => {
+                const count = workoutStats.workoutsByType[type];
+                html += `
+                    <div class="history-card history-${type}">
+                        <div class="workout-type">${workoutNames[type]}</div>
+                        <div class="workout-count">${count}</div>
+                    </div>
+                `;
+            });
+            
+            historyContainer.innerHTML = html;
+            
+            // Adicionar botão de reset se houver treinos
+            if (workoutStats.totalWorkouts > 0) {
+                const parentContainer = document.getElementById('workout-history');
+                const existingReset = parentContainer.querySelector('.stats-reset');
+                
+                if (!existingReset) {
+                    const resetDiv = document.createElement('div');
+                    resetDiv.className = 'stats-reset';
+                    resetDiv.innerHTML = '<button class="reset-btn" onclick="resetWorkoutStats()">🗑️ Resetar Estatísticas</button>';
+                    parentContainer.appendChild(resetDiv);
+                }
+            }
+        }
+
+        // Resetar estatísticas de treino
+        function resetWorkoutStats() {
+            if (confirm('Tem certeza que deseja resetar todas as estatísticas de treinos? Esta ação não pode ser desfeita.')) {
+                workoutStats = {
+                    totalWorkouts: 0,
+                    workoutsByType: {
+                        'treino-a': 0,
+                        'treino-b': 0,
+                        'treino-c': 0,
+                        'treino-d': 0,
+                        'treino-e': 0,
+                        'treino-f': 0
+                    },
+                    lastCompletedWorkouts: []
+                };
+                
+                saveWorkoutStats();
+                updateHistoryDisplay();
+                updateStats();
+                
+                // Remover botão de reset
+                const resetDiv = document.querySelector('.stats-reset');
+                if (resetDiv) {
+                    resetDiv.remove();
+                }
+                
+                alert('Estatísticas resetadas com sucesso!');
+            }
+        }
+
+        // Salvar estatísticas de treino
+        function saveWorkoutStats() {
+            try {
+                localStorage.setItem('workoutStats', JSON.stringify(workoutStats));
+            } catch (error) {
+                console.error('Erro ao salvar estatísticas de treinos:', error);
+            }
+        }
+
+        // Carregar estatísticas de treino
+        function loadWorkoutStats() {
+            try {
+                const saved = localStorage.getItem('workoutStats');
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    workoutStats = {
+                        ...workoutStats,
+                        ...parsed
+                    };
+                }
+            } catch (error) {
+                console.error('Erro ao carregar estatísticas de treinos:', error);
+            }
+        }
+
         // Atualizar estatísticas
         function updateStats() {
             const workout = workouts[currentDay];
@@ -911,6 +1258,12 @@
             const totalElement = document.getElementById('total-exercises');
             const progressElement = document.getElementById('workout-progress');
             const progressFillElement = document.getElementById('progress-fill');
+            const totalWorkoutsElement = document.getElementById('total-workouts');
+            
+            // Atualizar total de treinos concluídos
+            if (totalWorkoutsElement) {
+                totalWorkoutsElement.textContent = workoutStats.totalWorkouts;
+            }
             
             if (workout.isRest) {
                 if (completedElement) completedElement.textContent = '-';
@@ -939,6 +1292,13 @@
             if (totalElement) totalElement.textContent = total;
             if (progressElement) progressElement.textContent = `${progress}%`;
             if (progressFillElement) progressFillElement.style.width = `${progress}%`;
+            
+            // Verificar se o treino foi completado
+            if (progress === 100 && completed === total && !currentWorkoutCompleted) {
+                completeWorkout(workout);
+            } else if (progress < 100) {
+                currentWorkoutCompleted = false;
+            }
         }
 
         // Salvar progresso no localStorage
