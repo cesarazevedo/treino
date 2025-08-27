@@ -334,33 +334,6 @@
                 padding: 8px 12px;
                 font-size: 0.8rem;
             }
-            
-            .rest-time-controls {
-                gap: 5px;
-            }
-            
-            .rest-preset-btn {
-                padding: 6px 10px;
-                font-size: 0.75rem;
-            }
-            
-            #rest-time-input {
-                width: 60px;
-                padding: 6px 8px;
-            }
-            
-            .history-stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .congratulations-content {
-                padding: 30px 20px;
-                margin: 10px;
-            }
-            
-            .congratulations-content h2 {
-                font-size: 1.5rem;
-            }
         }
 
         .circuit-info {
@@ -569,247 +542,13 @@
             background: #ff3838;
             transform: translateY(-1px);
         }
-
-        /* Streak Stats */
-        .streak-stats {
-            display: flex;
-            gap: 15px;
-            margin: 15px 0;
-            justify-content: center;
-        }
-
-        .streak-card {
-            background: white;
-            padding: 15px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            flex: 1;
-            max-width: 200px;
-        }
-
-        .current-streak {
-            background: linear-gradient(135deg, #ff6b6b, #ffa500);
-            color: white;
-        }
-
-        .best-streak {
-            background: linear-gradient(135deg, #f39c12, #f1c40f);
-            color: white;
-        }
-
-        .streak-icon {
-            font-size: 2rem;
-        }
-
-        .streak-value {
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-
-        .streak-label {
-            font-size: 0.85rem;
-            opacity: 0.9;
-        }
-
-        /* Calendar Styles */
-        .calendar-container {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .calendar-header h3 {
-            margin: 0;
-            color: #333;
-            font-size: 1.3rem;
-        }
-
-        .calendar-nav-btn {
-            background: #667eea;
-            color: white;
-            border: none;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .calendar-nav-btn:hover {
-            background: #5a67d8;
-            transform: scale(1.1);
-        }
-
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-            margin-bottom: 15px;
-        }
-
-        .calendar-day-header {
-            text-align: center;
-            font-weight: bold;
-            padding: 8px;
-            color: #666;
-            font-size: 0.85rem;
-        }
-
-        .calendar-day {
-            aspect-ratio: 1;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            background: white;
-        }
-
-        .calendar-day:hover {
-            background: #f8f9ff;
-            transform: scale(1.05);
-        }
-
-        .calendar-day.today {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            font-weight: bold;
-        }
-
-        .calendar-day.other-month {
-            color: #ccc;
-            background: #f8f9fa;
-        }
-
-        .calendar-day.has-workout {
-            font-weight: bold;
-        }
-
-        .calendar-day.has-workout::after {
-            content: '';
-            position: absolute;
-            bottom: 2px;
-            right: 2px;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-        }
-
-        .calendar-day.workout-treino-a::after { background: #FF6B6B; }
-        .calendar-day.workout-treino-b::after { background: #4ECDC4; }
-        .calendar-day.workout-treino-c::after { background: #45B7D1; }
-        .calendar-day.workout-treino-d::after { background: #F9CA24; }
-        .calendar-day.workout-treino-e::after { background: #6C5CE7; }
-        .calendar-day.workout-treino-f::after { background: #FD79A8; }
-
-        .calendar-legend {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 0.8rem;
-            color: #666;
-        }
-
-        .legend-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
-
-        .treino-a-dot { background: #FF6B6B; }
-        .treino-b-dot { background: #4ECDC4; }
-        .treino-c-dot { background: #45B7D1; }
-        .treino-d-dot { background: #F9CA24; }
-        .treino-e-dot { background: #6C5CE7; }
-        .treino-f-dot { background: #FD79A8; }
-
-        /* Sound Toggle Button */
-        .sound-toggle-btn {
-            background: #4CAF50;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            margin-left: 10px;
-        }
-
-        .sound-toggle-btn.muted {
-            background: #ff4757;
-        }
-
-        .sound-toggle-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Weight Input Styles */
-        .weight-input-container {
-            margin: 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .weight-input {
-            width: 60px;
-            padding: 5px 8px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 0.9rem;
-            text-align: center;
-        }
-
-        .weight-input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .weight-history {
-            font-size: 0.8rem;
-            color: #666;
-            margin-top: 5px;
-        }
-
-        .weight-progress {
-            font-size: 0.8rem;
-            color: #4CAF50;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>💪 Treino com Halteres</h1>
-            <p>Seu programa de treinamento de 6 dias por semana</p>
+            <p>Seu programa de treinamento de 6 dias por semana - 8 exercícios por dia</p>
         </div>
 
         <div class="current-day">
@@ -830,7 +569,7 @@
                     <div class="stat-label">Exercícios Completos</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value" id="total-exercises">0</div>
+                    <div class="stat-value" id="total-exercises">8</div>
                     <div class="stat-label">Total de Exercícios</div>
                 </div>
                 <div class="stat-card">
@@ -868,25 +607,6 @@
             </div>
         </div>
 
-        <div class="calendar-container" id="calendar-container">
-            <div class="calendar-header">
-                <button class="calendar-nav-btn" onclick="changeCalendarMonth(-1)">‹</button>
-                <h3 id="calendar-month-year">Janeiro 2025</h3>
-                <button class="calendar-nav-btn" onclick="changeCalendarMonth(1)">›</button>
-            </div>
-            <div class="calendar-grid" id="calendar-grid">
-                <!-- Calendário será gerado aqui -->
-            </div>
-            <div class="calendar-legend">
-                <div class="legend-item"><span class="legend-dot treino-a-dot"></span> Treino A</div>
-                <div class="legend-item"><span class="legend-dot treino-b-dot"></span> Treino B</div>
-                <div class="legend-item"><span class="legend-dot treino-c-dot"></span> Treino C</div>
-                <div class="legend-item"><span class="legend-dot treino-d-dot"></span> Treino D</div>
-                <div class="legend-item"><span class="legend-dot treino-e-dot"></span> Treino E</div>
-                <div class="legend-item"><span class="legend-dot treino-f-dot"></span> Treino F</div>
-            </div>
-        </div>
-
         <div class="workout-container" id="workout-container">
             <!-- Conteúdo do treino será inserido aqui -->
         </div>
@@ -912,7 +632,7 @@
     </div>
 
     <script>
-        // Dados dos treinos
+        // Dados dos treinos - Agora com 8 exercícios cada
         const workouts = {
             'segunda': {
                 name: 'Treino A - Peito + Tríceps',
@@ -921,9 +641,12 @@
                 exercises: [
                     { name: 'Supino reto com halteres', reps: '4x8-12', series: 4 },
                     { name: 'Supino inclinado com halteres', reps: '3x8-12', series: 3 },
+                    { name: 'Supino declinado com halteres', reps: '3x10-12', series: 3 },
                     { name: 'Crucifixo reto', reps: '3x10-12', series: 3 },
+                    { name: 'Crucifixo inclinado', reps: '3x12-15', series: 3 },
                     { name: 'Tríceps francês (acima da cabeça)', reps: '3x10-12', series: 3 },
-                    { name: 'Tríceps coice (kickback)', reps: '3x12-15', series: 3 }
+                    { name: 'Tríceps coice (kickback)', reps: '3x12-15', series: 3 },
+                    { name: 'Tríceps testa com halteres', reps: '3x12-15', series: 3 }
                 ]
             },
             'terca': {
@@ -933,9 +656,12 @@
                 exercises: [
                     { name: 'Remada curvada com halteres', reps: '4x8-12', series: 4 },
                     { name: 'Remada unilateral', reps: '3x10 cada lado', series: 3 },
+                    { name: 'Remada alta com halteres', reps: '3x10-12', series: 3 },
                     { name: 'Pullover com halteres', reps: '3x10-12', series: 3 },
+                    { name: 'Shrugs (encolhimento)', reps: '3x12-15', series: 3 },
                     { name: 'Rosca direta', reps: '4x8-12', series: 4 },
-                    { name: 'Rosca martelo', reps: '3x10-12', series: 3 }
+                    { name: 'Rosca martelo', reps: '3x10-12', series: 3 },
+                    { name: 'Rosca concentrada', reps: '3x12-15', series: 3 }
                 ]
             },
             'quarta': {
@@ -945,9 +671,12 @@
                 exercises: [
                     { name: 'Agachamento com halteres', reps: '4x10-12', series: 4 },
                     { name: 'Afundo (lunge) alternado', reps: '3x10 cada perna', series: 3 },
+                    { name: 'Agachamento búlgaro', reps: '3x8-10 cada perna', series: 3 },
                     { name: 'Levantamento terra romeno', reps: '4x8-10', series: 4 },
                     { name: 'Hip thrust com halteres', reps: '3x12-15', series: 3 },
-                    { name: 'Panturrilha em pé com halteres', reps: '3x15-20', series: 3 }
+                    { name: 'Stiff com halteres', reps: '3x10-12', series: 3 },
+                    { name: 'Panturrilha em pé com halteres', reps: '3x15-20', series: 3 },
+                    { name: 'Agachamento sumo com halter', reps: '3x12-15', series: 3 }
                 ]
             },
             'quinta': {
@@ -958,9 +687,11 @@
                     { name: 'Desenvolvimento militar', reps: '4x8-12', series: 4 },
                     { name: 'Elevação lateral', reps: '3x10-12', series: 3 },
                     { name: 'Elevação frontal', reps: '3x10-12', series: 3 },
+                    { name: 'Elevação posterior (crucifixo invertido)', reps: '3x12-15', series: 3 },
+                    { name: 'Desenvolvimento Arnold', reps: '3x8-10', series: 3 },
                     { name: 'Encolhimento de ombros', reps: '3x15', series: 3 },
                     { name: 'Abdominal com halter no peito', reps: '3x15-20', series: 3 },
-                    { name: 'Prancha com remada', reps: '3x10 cada lado', series: 3 }
+                    { name: 'Prancha com remada alternada', reps: '3x10 cada lado', series: 3 }
                 ]
             },
             'sexta': {
@@ -972,7 +703,10 @@
                     { name: 'Remada curvada', reps: '4x8-10', series: 4 },
                     { name: 'Supino reto', reps: '4x8-10', series: 4 },
                     { name: 'Levantamento terra romeno', reps: '4x8-10', series: 4 },
-                    { name: 'Rosca direta + tríceps coice (bi-set)', reps: '3x12', series: 3 }
+                    { name: 'Desenvolvimento militar', reps: '3x8-12', series: 3 },
+                    { name: 'Rosca direta + tríceps coice (bi-set)', reps: '3x12', series: 3 },
+                    { name: 'Afundo com desenvolvimento', reps: '3x8 cada perna', series: 3 },
+                    { name: 'Burpee com halteres', reps: '3x8-10', series: 3 }
                 ]
             },
             'sabado': {
@@ -985,7 +719,10 @@
                     { name: 'Agachamento + elevação frontal', reps: '40s', series: 4 },
                     { name: 'Afundo com rotação de tronco', reps: '40s', series: 4 },
                     { name: 'Remada unilateral alternada', reps: '40s', series: 4 },
-                    { name: 'Abdominal russo com halter', reps: '40s', series: 4 }
+                    { name: 'Mountain climber com halteres', reps: '40s', series: 4 },
+                    { name: 'Desenvolvimento + agachamento', reps: '40s', series: 4 },
+                    { name: 'Abdominal russo com halter', reps: '40s', series: 4 },
+                    { name: 'Prancha dinâmica com toque no halter', reps: '40s', series: 4 }
                 ]
             },
             'domingo': {
@@ -1000,8 +737,7 @@
         let timerInterval = null;
         let timerSeconds = 0;
         let isTimerRunning = false;
-        let defaultRestTime = 90; // tempo padrão em segundos
-        let timerSoundEnabled = true; // som do timer habilitado
+        let defaultRestTime = 90;
         
         // Estatísticas de treinos
         let workoutStats = {
@@ -1014,17 +750,8 @@
                 'treino-e': 0,
                 'treino-f': 0
             },
-            lastCompletedWorkouts: [], // histórico dos últimos treinos
-            currentStreak: 0,
-            bestStreak: 0,
-            lastWorkoutDate: null // para calcular streak
+            lastCompletedWorkouts: []
         };
-        
-        // Sistema de pesos
-        let exerciseWeights = {}; // histórico de pesos por exercício
-        
-        // Calendário
-        let calendarCurrentDate = new Date();
         
         let currentWorkoutCompleted = false;
 
@@ -1038,7 +765,6 @@
             loadRestTimePreference();
             loadWorkoutStats();
             
-            // Aguardar um pouco para garantir que todos os elementos estejam carregados
             setTimeout(() => {
                 selectDay(currentDay);
                 updateRestTimeDisplay();
@@ -1048,7 +774,6 @@
 
         // Selecionar dia
         function selectDay(day) {
-            // Resetar status de completude ao trocar de dia
             if (day !== currentDay) {
                 currentWorkoutCompleted = false;
             }
@@ -1061,15 +786,8 @@
                 btn.classList.remove('active');
             });
             
-            // Encontrar e ativar o botão correspondente
             const dayButtons = {
-                'segunda': 0,
-                'terca': 1,
-                'quarta': 2,
-                'quinta': 3,
-                'sexta': 4,
-                'sabado': 5,
-                'domingo': 6
+                'segunda': 0, 'terca': 1, 'quarta': 2, 'quinta': 3, 'sexta': 4, 'sabado': 5, 'domingo': 6
             };
             
             if (allButtons[dayButtons[day]]) {
@@ -1078,21 +796,12 @@
             
             // Atualizar texto do dia
             const dayNames = {
-                'segunda': 'Segunda-feira',
-                'terca': 'Terça-feira',
-                'quarta': 'Quarta-feira',
-                'quinta': 'Quinta-feira',
-                'sexta': 'Sexta-feira',
-                'sabado': 'Sábado',
-                'domingo': 'Domingo'
+                'segunda': 'Segunda-feira', 'terca': 'Terça-feira', 'quarta': 'Quarta-feira',
+                'quinta': 'Quinta-feira', 'sexta': 'Sexta-feira', 'sabado': 'Sábado', 'domingo': 'Domingo'
             };
             
-            const dayTextElement = document.getElementById('current-day-text');
-            if (dayTextElement) {
-                dayTextElement.textContent = `Hoje é ${dayNames[day]}`;
-            }
+            document.getElementById('current-day-text').textContent = `Hoje é ${dayNames[day]}`;
             
-            // Renderizar treino
             renderWorkout(day);
             updateStats();
         }
@@ -1100,10 +809,7 @@
         // Renderizar treino
         function renderWorkout(day) {
             const container = document.getElementById('workout-container');
-            if (!container) return;
-            
             const workout = workouts[day];
-            if (!workout) return;
             
             if (workout.isRest) {
                 container.innerHTML = `
@@ -1116,11 +822,7 @@
                 return;
             }
             
-            let html = `
-                <div class="workout-title ${workout.class}">
-                    ${workout.name}
-                </div>
-            `;
+            let html = `<div class="workout-title ${workout.class}">${workout.name}</div>`;
             
             if (workout.isCircuit) {
                 html += `
@@ -1176,25 +878,19 @@
 
         // Alternar série completada
         function toggleSeries(exerciseKey, seriesNumber, totalSeries) {
-            try {
-                if (!completedExercises[exerciseKey]) {
-                    completedExercises[exerciseKey] = 0;
-                }
-                
-                if (seriesNumber <= completedExercises[exerciseKey]) {
-                    // Se está clicando numa série já completa, remove ela e todas posteriores
-                    completedExercises[exerciseKey] = seriesNumber - 1;
-                } else {
-                    // Marca a série como completa (e todas anteriores)
-                    completedExercises[exerciseKey] = seriesNumber;
-                }
-                
-                saveProgress();
-                renderWorkout(currentDay);
-                updateStats();
-            } catch (error) {
-                console.error('Erro ao alternar série:', error);
+            if (!completedExercises[exerciseKey]) {
+                completedExercises[exerciseKey] = 0;
             }
+            
+            if (seriesNumber <= completedExercises[exerciseKey]) {
+                completedExercises[exerciseKey] = seriesNumber - 1;
+            } else {
+                completedExercises[exerciseKey] = seriesNumber;
+            }
+            
+            saveProgress();
+            renderWorkout(currentDay);
+            updateStats();
         }
 
         // Iniciar timer de descanso
@@ -1215,7 +911,6 @@
             }, 1000);
         }
 
-        // Atualizar display do timer
         function updateTimerDisplay() {
             const minutes = Math.floor(timerSeconds / 60);
             const seconds = timerSeconds % 60;
@@ -1223,7 +918,6 @@
                 `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         }
 
-        // Pausar timer
         function pauseTimer() {
             if (isTimerRunning) {
                 clearInterval(timerInterval);
@@ -1232,7 +926,6 @@
                 timerInterval = setInterval(() => {
                     timerSeconds--;
                     updateTimerDisplay();
-                    
                     if (timerSeconds <= 0) {
                         stopTimer();
                         alert('⏰ Tempo de descanso acabou! Próxima série!');
@@ -1242,23 +935,16 @@
             }
         }
 
-        // Parar timer
         function stopTimer() {
             clearInterval(timerInterval);
             isTimerRunning = false;
             document.getElementById('timer-container').style.display = 'none';
         }
 
-        // Definir tempo de descanso pré-definido
         function setRestTime(seconds) {
             defaultRestTime = seconds;
+            document.querySelectorAll('.rest-preset-btn').forEach(btn => btn.classList.remove('active'));
             
-            // Atualizar botões ativos
-            document.querySelectorAll('.rest-preset-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Ativar botão correspondente
             const buttons = document.querySelectorAll('.rest-preset-btn');
             const values = [30, 45, 60, 90, 120];
             const index = values.indexOf(seconds);
@@ -1266,40 +952,29 @@
                 buttons[index].classList.add('active');
             }
             
-            // Atualizar input
             document.getElementById('rest-time-input').value = seconds;
-            
-            // Salvar preferência e atualizar interface
             saveRestTimePreference();
             updateRestTimeDisplay();
         }
 
-        // Definir tempo de descanso personalizado via input
         function setCustomRestTime() {
             const input = document.getElementById('rest-time-input');
             const seconds = parseInt(input.value);
             
             if (seconds >= 15 && seconds <= 300) {
                 defaultRestTime = seconds;
-                
-                // Remover destaque dos botões pré-definidos se não corresponder
                 const presetValues = [30, 45, 60, 90, 120];
                 if (!presetValues.includes(seconds)) {
-                    document.querySelectorAll('.rest-preset-btn').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
+                    document.querySelectorAll('.rest-preset-btn').forEach(btn => btn.classList.remove('active'));
                 }
-                
                 saveRestTimePreference();
                 updateRestTimeDisplay();
             } else {
-                // Valor inválido, restaurar o valor anterior
                 input.value = defaultRestTime;
                 alert('Por favor, insira um valor entre 15 e 300 segundos.');
             }
         }
 
-        // Atualizar display do tempo de descanso em todos os botões
         function updateRestTimeDisplay() {
             const buttons = document.querySelectorAll('.start-timer-btn');
             buttons.forEach(btn => {
@@ -1307,22 +982,16 @@
             });
         }
 
-        // Formatar tempo para exibição
         function formatTime(seconds) {
             if (seconds < 60) {
                 return `${seconds}s`;
             } else {
                 const minutes = Math.floor(seconds / 60);
                 const remainingSeconds = seconds % 60;
-                if (remainingSeconds === 0) {
-                    return `${minutes}min`;
-                } else {
-                    return `${minutes}min ${remainingSeconds}s`;
-                }
+                return remainingSeconds === 0 ? `${minutes}min` : `${minutes}min ${remainingSeconds}s`;
             }
         }
 
-        // Salvar preferência de tempo de descanso
         function saveRestTimePreference() {
             try {
                 localStorage.setItem('defaultRestTime', defaultRestTime.toString());
@@ -1331,17 +1000,12 @@
             }
         }
 
-        // Carregar preferência de tempo de descanso
         function loadRestTimePreference() {
             try {
                 const saved = localStorage.getItem('defaultRestTime');
                 if (saved) {
                     defaultRestTime = parseInt(saved);
-                    
-                    // Atualizar interface
                     document.getElementById('rest-time-input').value = defaultRestTime;
-                    
-                    // Atualizar botão ativo se corresponder a um preset
                     const presetValues = [30, 45, 60, 90, 120];
                     const index = presetValues.indexOf(defaultRestTime);
                     if (index !== -1) {
@@ -1353,15 +1017,11 @@
             }
         }
 
-        // Completar treino
         function completeWorkout(workout) {
             currentWorkoutCompleted = true;
-            
-            // Incrementar estatísticas
             workoutStats.totalWorkouts++;
             workoutStats.workoutsByType[workout.class]++;
             
-            // Adicionar ao histórico
             const today = new Date();
             workoutStats.lastCompletedWorkouts.unshift({
                 date: today.toISOString(),
@@ -1370,31 +1030,21 @@
                 day: currentDay
             });
             
-            // Manter apenas os últimos 50 treinos no histórico
             if (workoutStats.lastCompletedWorkouts.length > 50) {
                 workoutStats.lastCompletedWorkouts = workoutStats.lastCompletedWorkouts.slice(0, 50);
             }
             
-            // Salvar estatísticas
             saveWorkoutStats();
-            
-            // Atualizar display
             updateHistoryDisplay();
             updateStats();
-            
-            // Mostrar modal de parabéns
             showCongratulationsModal(workout);
         }
 
-        // Mostrar modal de parabéns
         function showCongratulationsModal(workout) {
             const modal = document.getElementById('congratulations-modal');
             const text = document.getElementById('congratulations-text');
             const summary = document.getElementById('stats-summary');
             
-            if (!modal || !text || !summary) return;
-            
-            // Personalizar mensagem baseada no tipo de treino
             const messages = {
                 'treino-a': 'Excelente trabalho no Peito e Tríceps! 💪',
                 'treino-b': 'Suas costas e bíceps agradecem! 🦾',
@@ -1406,37 +1056,24 @@
             
             text.textContent = messages[workout.class] || 'Você completou seu treino!';
             
-            // Mostrar resumo das estatísticas
             summary.innerHTML = `
                 <p style="margin: 10px 0; font-size: 1.1rem;">
                     <strong>Total de treinos: ${workoutStats.totalWorkouts}</strong>
                 </p>
                 <p style="margin: 5px 0; color: #666;">
-                    Tipo ${workout.class.toUpperCase()}: ${workoutStats.workoutsByType[workout.class]} treinos
+                    8 exercícios completos! 🎯
                 </p>
             `;
             
             modal.style.display = 'flex';
-            
-            // Efeito sonoro simulado com vibração (se suportado)
-            if (navigator.vibrate) {
-                navigator.vibrate([100, 50, 100, 50, 200]);
-            }
         }
 
-        // Fechar modal de parabéns
         function closeCongratulationsModal() {
-            const modal = document.getElementById('congratulations-modal');
-            if (modal) {
-                modal.style.display = 'none';
-            }
+            document.getElementById('congratulations-modal').style.display = 'none';
         }
 
-        // Atualizar display do histórico
         function updateHistoryDisplay() {
             const historyContainer = document.getElementById('history-stats');
-            if (!historyContainer) return;
-            
             const workoutNames = {
                 'treino-a': 'A - Peito/Tríceps',
                 'treino-b': 'B - Costas/Bíceps',
@@ -1447,7 +1084,6 @@
             };
             
             let html = '';
-            
             Object.keys(workoutStats.workoutsByType).forEach(type => {
                 const count = workoutStats.workoutsByType[type];
                 html += `
@@ -1460,11 +1096,9 @@
             
             historyContainer.innerHTML = html;
             
-            // Adicionar botão de reset se houver treinos
             if (workoutStats.totalWorkouts > 0) {
                 const parentContainer = document.getElementById('workout-history');
                 const existingReset = parentContainer.querySelector('.stats-reset');
-                
                 if (!existingReset) {
                     const resetDiv = document.createElement('div');
                     resetDiv.className = 'stats-reset';
@@ -1474,18 +1108,13 @@
             }
         }
 
-        // Resetar estatísticas de treino
         function resetWorkoutStats() {
-            if (confirm('Tem certeza que deseja resetar todas as estatísticas de treinos? Esta ação não pode ser desfeita.')) {
+            if (confirm('Tem certeza que deseja resetar todas as estatísticas? Esta ação não pode ser desfeita.')) {
                 workoutStats = {
                     totalWorkouts: 0,
                     workoutsByType: {
-                        'treino-a': 0,
-                        'treino-b': 0,
-                        'treino-c': 0,
-                        'treino-d': 0,
-                        'treino-e': 0,
-                        'treino-f': 0
+                        'treino-a': 0, 'treino-b': 0, 'treino-c': 0,
+                        'treino-d': 0, 'treino-e': 0, 'treino-f': 0
                     },
                     lastCompletedWorkouts: []
                 };
@@ -1494,87 +1123,60 @@
                 updateHistoryDisplay();
                 updateStats();
                 
-                // Remover botão de reset
                 const resetDiv = document.querySelector('.stats-reset');
-                if (resetDiv) {
-                    resetDiv.remove();
-                }
-                
+                if (resetDiv) resetDiv.remove();
                 alert('Estatísticas resetadas com sucesso!');
             }
         }
 
-        // Salvar estatísticas de treino
         function saveWorkoutStats() {
             try {
                 localStorage.setItem('workoutStats', JSON.stringify(workoutStats));
             } catch (error) {
-                console.error('Erro ao salvar estatísticas de treinos:', error);
+                console.error('Erro ao salvar estatísticas:', error);
             }
         }
 
-        // Carregar estatísticas de treino
         function loadWorkoutStats() {
             try {
                 const saved = localStorage.getItem('workoutStats');
                 if (saved) {
-                    const parsed = JSON.parse(saved);
-                    workoutStats = {
-                        ...workoutStats,
-                        ...parsed
-                    };
+                    workoutStats = { ...workoutStats, ...JSON.parse(saved) };
                 }
             } catch (error) {
-                console.error('Erro ao carregar estatísticas de treinos:', error);
+                console.error('Erro ao carregar estatísticas:', error);
             }
         }
 
-        // Atualizar estatísticas
         function updateStats() {
             const workout = workouts[currentDay];
             
-            if (!workout) return;
-            
-            const completedElement = document.getElementById('completed-exercises');
-            const totalElement = document.getElementById('total-exercises');
-            const progressElement = document.getElementById('workout-progress');
-            const progressFillElement = document.getElementById('progress-fill');
-            const totalWorkoutsElement = document.getElementById('total-workouts');
-            
-            // Atualizar total de treinos concluídos
-            if (totalWorkoutsElement) {
-                totalWorkoutsElement.textContent = workoutStats.totalWorkouts;
-            }
-            
             if (workout.isRest) {
-                if (completedElement) completedElement.textContent = '-';
-                if (totalElement) totalElement.textContent = '-';
-                if (progressElement) progressElement.textContent = 'Descanso';
-                if (progressFillElement) progressFillElement.style.width = '100%';
+                document.getElementById('completed-exercises').textContent = '-';
+                document.getElementById('total-exercises').textContent = '-';
+                document.getElementById('workout-progress').textContent = 'Descanso';
+                document.getElementById('progress-fill').style.width = '100%';
+                document.getElementById('total-workouts').textContent = workoutStats.totalWorkouts;
                 return;
             }
             
             let completed = 0;
-            let total = 0;
+            let total = 8; // Sempre 8 exercícios agora
             
             workout.exercises.forEach((exercise, index) => {
                 const exerciseKey = `${currentDay}_${index}`;
                 const completedSeries = completedExercises[exerciseKey] || 0;
-                
-                if (completedSeries >= exercise.series) {
-                    completed++;
-                }
-                total++;
+                if (completedSeries >= exercise.series) completed++;
             });
             
-            const progress = total > 0 ? Math.round((completed / total) * 100) : 0;
+            const progress = Math.round((completed / total) * 100);
             
-            if (completedElement) completedElement.textContent = completed;
-            if (totalElement) totalElement.textContent = total;
-            if (progressElement) progressElement.textContent = `${progress}%`;
-            if (progressFillElement) progressFillElement.style.width = `${progress}%`;
+            document.getElementById('completed-exercises').textContent = completed;
+            document.getElementById('total-exercises').textContent = total;
+            document.getElementById('workout-progress').textContent = `${progress}%`;
+            document.getElementById('progress-fill').style.width = `${progress}%`;
+            document.getElementById('total-workouts').textContent = workoutStats.totalWorkouts;
             
-            // Verificar se o treino foi completado
             if (progress === 100 && completed === total && !currentWorkoutCompleted) {
                 completeWorkout(workout);
             } else if (progress < 100) {
@@ -1582,7 +1184,6 @@
             }
         }
 
-        // Salvar progresso no localStorage
         function saveProgress() {
             try {
                 const today = new Date().toDateString();
@@ -1594,7 +1195,6 @@
             }
         }
 
-        // Carregar progresso do localStorage
         function loadProgress() {
             try {
                 const saved = localStorage.getItem('workoutProgress');
@@ -1602,7 +1202,6 @@
                 const savedCompleted = localStorage.getItem('currentWorkoutCompleted');
                 const today = new Date().toDateString();
                 
-                // Reset do progresso se é um novo dia
                 if (lastDate !== today) {
                     completedExercises = {};
                     currentWorkoutCompleted = false;
@@ -1619,10 +1218,8 @@
             }
         }
 
-        // Inicializar quando a página carregar
         document.addEventListener('DOMContentLoaded', init);
         
-        // Fechar modal ao clicar fora dele
         document.addEventListener('click', function(event) {
             const modal = document.getElementById('congratulations-modal');
             if (modal && event.target === modal) {
